@@ -12,9 +12,13 @@ $(document).ready(function(ev){
         $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
             converters: [
                 {
-                filter: ['div', 'font', 'span'],
+                filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style'],
                 replacement: function(html, node){
-                    return html + (node.nodeName.toLowerCase() == 'div' ? '\n' : '');
+                    var name = node.nodeName.toLowerCase();
+                    if (name != 'table' && name != 'tr' && name != 'td'){
+                        return html + (name == 'div' ? '\n' : '');
+                    }
+                    return html + (name == 'table' ? '' : (name == 'tr' ? '\n' : '\t'));
                 }
             }]
         }));
