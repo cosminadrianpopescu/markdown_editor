@@ -1,3 +1,4 @@
+var init_html;
 $(document).ready(function(ev){
     if (typeof(rcmail.env.compose_mode) != 'undefined' && rcmail.env.compose_mode != 'reply'){
         return ;
@@ -13,8 +14,8 @@ $(document).ready(function(ev){
 });
 
 function make_markdown(){
-    var val = $('#composebody').val();
-    $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
+    init_html = $('#composebody').val();
+    $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(init_html, {
         converters: [
             {
             filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style', 'tbody', 'center'],
