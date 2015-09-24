@@ -44,8 +44,8 @@ class markdown_editor extends rcube_plugin
     }
 
     function html_output($p){
-        if (!self::$added){
-            self:$added = true;
+        if (!self::$html_added){
+            self:$html_added = true;
             $content = file_get_contents(__DIR__ . '/html/markdown_editor.html');
             $p['content'] .= $content;
         }
