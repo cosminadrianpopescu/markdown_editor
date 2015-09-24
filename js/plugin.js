@@ -21,6 +21,9 @@ function make_markdown(){
             filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style', 'tbody', 'center'],
             replacement: function(html, node){
                 var name = node.nodeName.toLowerCase();
+                if (name == 'style'){
+                    return '';
+                }
                 if (name != 'table' && name != 'tr' && name != 'td'){
                     return html + (name == 'div' ? '\n' : '');
                 }
