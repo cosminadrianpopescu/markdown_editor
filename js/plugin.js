@@ -8,22 +8,26 @@ $(document).ready(function(ev){
             $('#composebody').val(marked(md));
             return true;
         });
-        var val = $('#composebody').val();
-        $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
-            converters: [
-                {
-                filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style', 'tbody', 'center'],
-                replacement: function(html, node){
-                    var name = node.nodeName.toLowerCase();
-                    if (name != 'table' && name != 'tr' && name != 'td'){
-                        return html + (name == 'div' ? '\n' : '');
-                    }
-                    return html + (name == 'table' ? '' : (name == 'tr' ? '\n' : '\t'));
-                }
-            }]
-        }));
-        if (typeof(init_jsvi) != 'undefined' && USE_JSVI == 1){
-            init_jsvi();
-        }
+        make_markdown();
     }
-})
+});
+
+function make_markdown(){
+    var val = $('#composebody').val();
+    $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
+        converters: [
+            {
+            filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style', 'tbody', 'center'],
+            replacement: function(html, node){
+                var name = node.nodeName.toLowerCase();
+                if (name != 'table' && name != 'tr' && name != 'td'){
+                    return html + (name == 'div' ? '\n' : '');
+                }
+                return html + (name == 'table' ? '' : (name == 'tr' ? '\n' : '\t'));
+            }
+        }]
+    }));
+    if (typeof(init_jsvi) != 'undefined' && USE_JSVI == 1){
+        init_jsvi();
+    }
+}
