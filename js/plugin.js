@@ -39,3 +39,8 @@ function make_markdown(){
         init_jsvi();
     }
 }
+
+function back_to_html(){
+    $('#composebody').val(init_html);
+    $('#composebody').removeClass('no_mce').addClass('mce_editor');
+}
