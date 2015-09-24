@@ -14,6 +14,7 @@ $(document).ready(function(ev){
 
 function make_markdown(){
     var val = $('#composebody').val();
+    console.log("VAL INIT", val);
     $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
         converters: [
             {
