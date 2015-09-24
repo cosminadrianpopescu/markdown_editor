@@ -32,7 +32,8 @@ function make_markdown(){
         }]
     }));
 
-    console.log("HTML IS", md_tpl.render('back_to_html', {text: rcmail.gettext("markdown_editor.text")}));
+    var html = md_tpl.render('back_to_html', {text: rcmail.gettext("markdown_editor.text")});
+    $('#composeoptions').append(html);
 
     if (typeof(init_jsvi) != 'undefined' && USE_JSVI == 1){
         init_jsvi();
