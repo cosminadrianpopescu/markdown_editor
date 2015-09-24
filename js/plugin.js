@@ -12,7 +12,7 @@ $(document).ready(function(ev){
         $('#composebody').removeClass('mce_editor').addClass('no_mce').val(toMarkdown(val, {
             converters: [
                 {
-                filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style'],
+                filter: ['div', 'font', 'span', 'table', 'tr', 'td', 'style', 'tbody', 'center'],
                 replacement: function(html, node){
                     var name = node.nodeName.toLowerCase();
                     if (name != 'table' && name != 'tr' && name != 'td'){
