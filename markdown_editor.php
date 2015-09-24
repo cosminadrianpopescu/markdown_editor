@@ -34,7 +34,7 @@ class markdown_editor extends rcube_plugin
             $this->include_script('js/to-markdown.js');
             $this->include_script('js/marked.js');
 
-            // $this->add_hook('template_container', array($this, 'html_output'));
+            $this->add_hook('template_container', array($this, 'html_output'));
 
             $this->load_config();
             if ($rcmail->config->get("use_jsvieditor", 0)){
@@ -43,12 +43,12 @@ class markdown_editor extends rcube_plugin
         }
     }
 
-    // function html_output($p){
-    //     if (!self::$html_added){
-    //         self:$html_added = true;
-    //         $content = file_get_contents(__DIR__ . '/html/markdown_editor.html');
-    //         $p['content'] .= $content;
-    //     }
-    //     return $p;
-    // }
+    function html_output($p){
+        if (!self::$html_added){
+            self:$html_added = true;
+            $content = file_get_contents(__DIR__ . '/html/markdown_editor.html');
+            $p['content'] .= $content;
+        }
+        return $p;
+    }
 }
