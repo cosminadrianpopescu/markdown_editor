@@ -34,7 +34,7 @@ class markdown_editor extends rcube_plugin
             $this->include_script('js/to-markdown.js');
             $this->include_script('js/marked.js');
 
-            $this->add_hook('template_container', array($this, 'html_output'));
+            // $this->add_hook('template_container', array($this, 'html_output'));
 
             $this->load_config();
             if ($rcmail->config->get("use_jsvieditor", 0)){
