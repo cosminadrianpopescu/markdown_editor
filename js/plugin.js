@@ -42,5 +42,6 @@ function make_markdown(){
 
 function back_to_html(){
     $('#composebody').val(init_html);
-    $('#composebody').removeClass('no_mce').addClass('mce_editor');
+    $('#composebody').removeClass('no_mce');
+    tinymce.execCommand('mceToggleEditor', true, 'composebody');
 }
