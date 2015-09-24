@@ -16,6 +16,14 @@ class markdown_editor extends rcube_plugin
 {
     public $task = 'mail|compose';
 
+    /**
+     * Added html content
+     * @var boolean
+     * @access public
+     */
+    public static $html_added = false;
+    
+
     function init()
     {
         $rcmail = rcmail::get_instance();
@@ -26,10 +34,21 @@ class markdown_editor extends rcube_plugin
             $this->include_script('js/to-markdown.js');
             $this->include_script('js/marked.js');
 
+            $this->add_hook('template_container', array($this, 'html_output'));
+
             $this->load_config();
             if ($rcmail->config->get("use_jsvieditor", 0)){
                 $this->include_script('js/jsvi.js');
             }
         }
+    }
+
+    function html_output($p){
+        if (!self::$added){
+            self:$added = true;
+            $content = file_get_contents(__DIR__ . '/html/markdown_editor.html');
+            $p['content'] .= $content;
+        }
+        return $p;
     }
 }
